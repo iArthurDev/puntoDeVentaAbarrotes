@@ -4,6 +4,8 @@
 
 package com.mycompany.puntoventaabarrotes;
 
+import Presentacion.FrmMenu;
+
 /**
  *
  * @author ldoar
@@ -11,6 +13,10 @@ package com.mycompany.puntoventaabarrotes;
 public class PuntoVentaAbarrotes {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new FrmMenu().setVisible(true);
+            }
+        });
     }
 }
