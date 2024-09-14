@@ -24,6 +24,11 @@ public class ProveedorDAO implements IProveedorDao {
         this.conexion = ConexionDAO.getInstance().obtenerConexion();
     }
 
+    /**
+     * Metodo que realiza un nuevo registro en la tabla proveedor
+     * @param proveedor
+     * @return 
+     */
     @Override
     public boolean insert(Proveedor proveedor) {
         String sqlINSERT = "INSERT INTO proveedor (nombre, email, telefono) VALUES (?, ?, ?)";
@@ -44,16 +49,30 @@ public class ProveedorDAO implements IProveedorDao {
         return registros != 0;
     }
 
+    /**
+     * Metodo que regresa una lista de todos los registro de la tabla proveedor
+     * @return 
+     */
     @Override
     public List<Proveedor> selectAll() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    /**
+     * Metodo que regresa una lista de todos los registro de la tabla proveedor que coincidan con el nombre enviado por parametro
+     * @param nombre
+     * @return 
+     */
     @Override
     public List<Proveedor> selectByName(String nombre) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    /**
+     * Metodo que regresa una lista de todos los registro de la tabla proveedor que coincidan con el ID del proveedor enviado por parametro
+     * @param proveedor
+     * @return 
+     */
     @Override
     public Proveedor selectByID(Proveedor proveedor) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

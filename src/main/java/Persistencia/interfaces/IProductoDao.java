@@ -26,4 +26,6 @@ public interface IProductoDao {
     public boolean update(Producto producto);
     
     public boolean delete(Producto producto);
+    
+    public boolean exists(String upc);
 }

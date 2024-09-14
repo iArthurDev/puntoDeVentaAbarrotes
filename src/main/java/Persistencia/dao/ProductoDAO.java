@@ -25,8 +25,19 @@ public class ProductoDAO implements IProductoDao {
         this.conexion = ConexionDAO.getInstance().obtenerConexion();
     }
 
+    /**
+     * Metodo que realiza un nuevo registro en la tabla producto
+     * @param producto
+     * @return 
+     */
     @Override
     public boolean insert(Producto producto) {
+
+        if (this.exists(producto.getUpc()) == false) {
+            JOptionPane.showMessageDialog(null, "Advertencia: El producto ya está registrado", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+
         String sql = "INSERT INTO producto (idProveedor, upc, nombre, precioCosto, precioVenta, disponibilidad) "
                 + "VALUES (?, ?, ?, ?, ?, ?)";
         int registros = 0;
@@ -51,16 +62,30 @@ public class ProductoDAO implements IProductoDao {
         return registros != 0;
     }
 
+    /**
+     * Metodo que regresa una lista de todos los registro de la tabla producto
+     * @return 
+     */
     @Override
     public List<Producto> selectAll() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    /**
+     * Metodo que regresa una lista de todos los registro de la tabla producto que coincidan con el nombre enviado por parametro
+     * @param nombre
+     * @return 
+     */
     @Override
     public List<Producto> selectByName(String nombre) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    /**
+     * Metodo que regresa una lista de todos los registro de la tabla producto que coincidan con el ID del producto enviado por enviado por parametro
+     * @param producto
+     * @return 
+     */
     @Override
     public Producto selectByID(Producto producto) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -76,6 +101,10 @@ public class ProductoDAO implements IProductoDao {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    /**
+     * Metodo que regresa el ultimo registro realizado
+     * @return 
+     */
     @Override
     public Producto selectLast() {
         Producto producto = null;
@@ -98,6 +127,29 @@ public class ProductoDAO implements IProductoDao {
             ex.printStackTrace(System.out);
         }
         return producto;
+    }
+
+    /**
+     * Metodo que comprueba si ya existe un producto registrado
+     * @param upc
+     * @return 
+     */
+    @Override
+    public boolean exists(String upc) {
+
+        String sqlEXIST = "SELECT COUNT(*) FROM producto WHERER upc = ?";
+        boolean exists = false;
+
+        try (PreparedStatement stmtExist = conexion.prepareStatement(sqlEXIST)) {
+            stmtExist.setString(1, upc);
+            ResultSet rs = stmtExist.executeQuery();
+
+            if (rs.next()) {
+                exists = rs.getInt(1) < 0;
+            }
+        } catch (Exception e) {
+        }
+        return exists;
     }
 
 }

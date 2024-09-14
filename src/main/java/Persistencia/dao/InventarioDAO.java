@@ -23,6 +23,11 @@ public class InventarioDAO implements IInventarioDao{
         this.conexion = ConexionDAO.getInstance().obtenerConexion();
     }
     
+    /**
+     * Metodo que realiza un nuevo registro en la tabla inventario 
+     * @param inventario
+     * @return 
+     */
     @Override
     public boolean insert(Inventario inventario) {
         String sql = "INSERT INTO inventario (idProducto, cantidadDisponible, fechaModificacion) "
