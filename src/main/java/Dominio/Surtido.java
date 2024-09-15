@@ -19,8 +19,8 @@ public class Surtido {
     public Surtido() {
     }
 
-    public Surtido(int idSurtido) {
-        this.idSurtido = idSurtido;
+    public Surtido(int idPedido) {
+        this.idPedido = idPedido;
     }
 
     public Surtido(int idPedido, Date fechaSurtido) {

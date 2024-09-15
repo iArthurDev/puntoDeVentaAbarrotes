@@ -20,10 +20,10 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(int idProducto) {
-        this.idProducto = idProducto;
+    public Producto(int idProveedor) {
+        this.idProveedor = idProveedor;
     }
-
+    
     public Producto(int idProveedor, String upc, String nombreProducto, double precioVenta, double precioCosto, String disponibilidad) {
         this.idProveedor = idProveedor;
         this.upc = upc;

@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface IPedidoDao {
     
-    public boolean inser(Pedido pedido);
+    public boolean insert(Pedido pedido);
     
     public List<Pedido> selectAll();
     
@@ -21,7 +21,15 @@ public interface IPedidoDao {
     
     public Pedido selectByID(int idPedido);
     
+    public Pedido selectLast();
+    
     public boolean update(Pedido pedido);
+    
+    public boolean updateEstado(int idPedido, String estado);
+    
+    public boolean updateCantidadPedido(int idPedido, int cantidad);
+    
+    public boolean updateCosto(int idPedido, double costoPedido);
     
     public boolean delete(int idPedido);
    

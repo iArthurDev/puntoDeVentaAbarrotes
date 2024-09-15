@@ -83,12 +83,35 @@ public class ProductoDAO implements IProductoDao {
 
     /**
      * Metodo que regresa una lista de todos los registro de la tabla producto que coincidan con el ID del producto enviado por enviado por parametro
-     * @param producto
+     * @param idProducto
      * @return 
      */
     @Override
-    public Producto selectByID(Producto producto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Producto selectByID(int idProducto) {
+        Producto producto = null;
+        
+        String sqlSELECT = "SELECT * FROM producto WHERE idProducto = ?";
+        
+        try (PreparedStatement stmtSelect = conexion.prepareStatement(sqlSELECT)){
+            stmtSelect.setInt(1, idProducto);
+            
+            ResultSet rs = stmtSelect.executeQuery();
+            
+            if ( rs.next()) {
+                producto = new Producto(
+                        rs.getInt("idProducto"), 
+                        rs.getInt("idProveedor"), 
+                        rs.getString("upc"), 
+                        rs.getString("nombre"), 
+                        rs.getDouble("precioCosto"), 
+                        rs.getDouble("precioVenta"), 
+                        rs.getString("disponibilidad"));
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+        }
+        return producto;
     }
 
     @Override
@@ -122,7 +145,6 @@ public class ProductoDAO implements IProductoDao {
                 producto.setPrecioCosto(rs.getDouble("precioCosto"));
                 producto.setDisponibilidad(rs.getString("disponibilidad"));
             }
-
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         }
@@ -147,7 +169,8 @@ public class ProductoDAO implements IProductoDao {
             if (rs.next()) {
                 exists = rs.getInt(1) < 0;
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
         }
         return exists;
     }

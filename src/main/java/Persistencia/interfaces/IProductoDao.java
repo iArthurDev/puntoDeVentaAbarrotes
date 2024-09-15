@@ -19,7 +19,7 @@ public interface IProductoDao {
     
     public List<Producto> selectByName(String nombre);
     
-    public Producto selectByID(Producto producto);
+    public Producto selectByID(int idProducto);
     
     public Producto selectLast();
     

@@ -28,6 +28,11 @@ public class InventarioServicesDAO implements IInventarioServices {
         this.conexion = ConexionDAO.getInstance().obtenerConexion();
     }
 
+    /**
+     * Metodo que ejecuta el registro de un nuevo producto en el inventario
+     * @param producto
+     * @param cantidadDisponible 
+     */
     @Override
     public void insertProducto(Producto producto, int cantidadDisponible) {
 
@@ -60,11 +65,22 @@ public class InventarioServicesDAO implements IInventarioServices {
                 if (conexion != null) {
                     conexion.setAutoCommit(true);
                 }
+                
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
 
+    }
+
+    @Override
+    public void surtirInventario() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void realizarVenta() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

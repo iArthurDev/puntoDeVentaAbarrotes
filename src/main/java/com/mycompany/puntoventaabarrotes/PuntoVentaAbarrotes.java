@@ -1,16 +1,25 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
-
 package com.mycompany.puntoventaabarrotes;
 
+import Dominio.DetallePedido;
 import Dominio.Inventario;
+import Dominio.Pedido;
 import Dominio.Producto;
 import Dominio.Proveedor;
+import Dominio.Surtido;
 import Negocio.dao.InventarioServicesDAO;
+import Negocio.dao.PedidoServicesDAO;
+import Persistencia.dao.DetallePedidoDAO;
+import Persistencia.dao.PedidoDAO;
+import Persistencia.dao.ProductoDAO;
 import Persistencia.dao.ProveedorDAO;
+import Persistencia.dao.SurtidoDAO;
 import Presentacion.FrmMenu;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -25,27 +34,18 @@ public class PuntoVentaAbarrotes {
 //            }
 //        });
 
+        ProductoDAO productoDAO = new ProductoDAO();
+        List<Producto> productos = new ArrayList<>();
+        List<Integer> cantidadesSolicitadas = new ArrayList<>();
+        
+        productos.add(productoDAO.selectByID(10));
+        cantidadesSolicitadas.add(2);
+        
+        PedidoServicesDAO pedidoServices = new PedidoServicesDAO();
+        
+//        pedidoServices.insertProductosPedido(5, productos, cantidadesSolicitadas);
 
-//        Proveedor proveedorNuevo = new Proveedor(1, "Sabritas", "Sabritas@gmail.com", "6442510255");
-//        
-//        Producto productoNuevo = new Producto(1, proveedorNuevo, "85020", "Tostitos 220grs", 20.5, 19, "Disponible");
-//        
-//        System.out.println(productoNuevo.toString());
-//        
-//        Inventario inventario = new Inventario(1, productoNuevo, 30, new java.sql.Date(System.currentTimeMillis()));
-//        
-//        System.out.println(inventario.toString());
-
-        ProveedorDAO proveedorDao = new ProveedorDAO();
+        pedidoServices.realizarSurtido(10);
         
-        Proveedor proveedor = new Proveedor("Yaqui", "CremeriaYaqui@gmail.com", "6443022579");
-        
-//        proveedorDao.insert(new Proveedor("Yaqui", "CremeriaYaqui@gmail.com", "6443022579"));
-        
-        Producto producto = new Producto(1, "854410", "Leche entera 4lts", 35, 43, "Disponible");
-        
-        InventarioServicesDAO inventarioServices = new InventarioServicesDAO();
-        
-        inventarioServices.insertProducto(producto, 15);
     }
 }

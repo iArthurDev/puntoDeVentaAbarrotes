@@ -5,17 +5,15 @@
 package Negocio.interfaces;
 
 import Dominio.Producto;
-import java.sql.Date;
+import java.util.List;
 
 /**
  *
  * @author ldoar
  */
-public interface IInventarioServices {
+public interface IPedidoServices {
     
-    public void insertProducto(Producto producto, int cantidadDisponible);
+    public void insertProductosPedido(int idProveedor, List<Producto> productosSolicitados, List<Integer> cantidadesSolicitadas);
     
-    public void surtirInventario();
-    
-    public void realizarVenta();
+    public void realizarSurtido(int idPedido);
 }

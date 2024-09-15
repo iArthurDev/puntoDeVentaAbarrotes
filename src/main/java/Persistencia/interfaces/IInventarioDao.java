@@ -16,5 +16,12 @@ public interface IInventarioDao {
     
     public boolean insert(Inventario inventario);
     
+    public boolean updateVenta();
+    
+    public boolean updateSurtido(int idProducto, int nuevaCantidad);
+    
+    public boolean updateFechaModificacion(int idProducto);
+    
+    public Inventario selectProductoByID(int idProducto);
     
 }

@@ -13,27 +13,38 @@ import java.sql.Date;
 public class Pedido {
     private int idPedido;
     private int idProveedor;
+    private String clave;
+    private int cantidadProductos;
     private double costoPedido;
     private Date fechaPedido;
     private String estado;
 
     public Pedido() {
     }
-
-    public Pedido(int idPedido) {
-        this.idPedido = idPedido;
+    
+    public Pedido(int idProveedor) {
+        this.idProveedor = idProveedor;
     }
 
-    public Pedido(int idProveedor, double costoPedido, Date fechaPedido, String estado) {
+    public Pedido(int idProveedor, String clave) {
         this.idProveedor = idProveedor;
+        this.clave = clave;
+    }
+    
+    public Pedido(int idProveedor, String clave, int cantidadProductos, double costoPedido, Date fechaPedido, String estado) {
+        this.idProveedor = idProveedor;
+        this.clave = clave;
+        this.cantidadProductos = cantidadProductos;
         this.costoPedido = costoPedido;
         this.fechaPedido = fechaPedido;
         this.estado = estado;
     }
 
-    public Pedido(int idPedido, int idProveedor, double costoPedido, Date fechaPedido, String estado) {
+    public Pedido(int idPedido, int idProveedor, String clave, int cantidadProductos, double costoPedido, Date fechaPedido, String estado) {
         this.idPedido = idPedido;
         this.idProveedor = idProveedor;
+        this.clave = clave;
+        this.cantidadProductos = cantidadProductos;
         this.costoPedido = costoPedido;
         this.fechaPedido = fechaPedido;
         this.estado = estado;
@@ -53,6 +64,22 @@ public class Pedido {
 
     public void setIdProveedor(int idProveedor) {
         this.idProveedor = idProveedor;
+    }
+
+    public String getClave() {
+        return clave;
+    }
+
+    public void setClave(String clave) {
+        this.clave = clave;
+    }
+
+    public int getCantidadProductos() {
+        return cantidadProductos;
+    }
+
+    public void setCantidadProductos(int cantidadProductos) {
+        this.cantidadProductos = cantidadProductos;
     }
 
     public double getCostoPedido() {
@@ -81,8 +108,7 @@ public class Pedido {
 
     @Override
     public String toString() {
-        return "Pedido{" + "idPedido=" + idPedido + ", idProveedor=" + idProveedor + ", costoPedido=" + costoPedido + ", fechaPedido=" + fechaPedido + ", estado=" + estado + '}';
+        return "Pedido{" + "idPedido=" + idPedido + ", idProveedor=" + idProveedor + ", clave=" + clave + ", cantidadProductos=" + cantidadProductos + ", costoPedido=" + costoPedido + ", fechaPedido=" + fechaPedido + ", estado=" + estado + '}';
     }
-
 
 }
